@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class MiniGame {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-
         int gameNum;
         do {
             System.out.println("*************");
@@ -19,52 +17,47 @@ public class MiniGame {
             System.out.println("* 0. 종료");
             System.out.println("*************");
             System.out.print("* 게임을 선택하세요 : ");
-            gameNum = sc.nextInt(); //숫자입력
+            gameNum = MiniGame.nextInt(); //숫자입력
 
-            switch (gameNum){
-                case 1 :
+            switch (gameNum) {
+                case 1:
                     MiniGame.cls(); //출력물 간격 띄우기
                     System.out.println("가위바위보 선택!");
                     rspGame(); //게임 메소드 실행
                     break;
-
-                case 2 :
+                case 2:
                     MiniGame.cls();
                     System.out.println("2번 게임 선택");
+                    storyGame();
                     break;
-
                 case 0:
                     break;
-
-                default :
+                default:
                     MiniGame.cls();
                     System.out.println("다시 입력해주세요");
                     break;
-
             }
-
-        }while(gameNum != 0 );
+        } while (gameNum != 0);
 
         MiniGame.cls();
         System.out.println("프로그램 종료~ ㅂㅂ~ ");
     }
 
     //가위바위보 게임
-    public static void rspGame(){
-        Scanner sc = new Scanner(System.in);
+    public static void rspGame() {
         Random random = new Random();
-        HashMap<Integer, String> map1= new HashMap<>() {{  //key,value 로 숫자 : 주먹종류 저장
-            put(1, "가위");
-            put(2, "바위");
-            put(3, "보");
-        }};
+        HashMap<Integer, String> map1;
+        map1 = new HashMap<Integer, String>();
+        map1.put(1, "가위");
+        map1.put(2, "바위");
+        map1.put(3, "보");
 
-        while(true){
+        while (true) {
             System.out.println("1.가위 2.바위 3.보 4.게임끝내기");
             System.out.print(">입력 : ");
-            int you = sc.nextInt();          //무엇을 낼지 결정
+            int you = MiniGame.nextInt();          //무엇을 낼지 결정
 
-            switch(you){
+            switch (you) {
                 case 1:
                 case 2:
                 case 3:
@@ -84,29 +77,31 @@ public class MiniGame {
             System.out.println("컴퓨터 : " + map1.get(com));
 
             int result = you - com;
-            if (result == 0){
+            if (result == 0) {
                 System.out.println("** 무승부 **");
-            }
-            else if(result == -1 || result == 2){
+            } else if (result == -1 || result == 2) {
                 System.out.println("당신이 졌습니다.");
-            }
-            else{
+            } else {
                 System.out.println("당신이 이겼습니다.");
-                MiniGame.cls();
-
             }
-
-        } // while 문 끝
+        }
         System.out.println("--- 가위바위보 게임 종료 --- ");
     }
 
-
-    public static void cls(){
-        for (int i = 0; i < 3 ; i ++){
-            System.out.println();
-
-        }
+    public static void storyGame() {
 
     }
 
+    // 콘솔 공백출력
+    public static void cls() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println();
+        }
+    }
+
+    //콘솔입력 메소드
+    public static int nextInt() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextInt();
+    }
 }
