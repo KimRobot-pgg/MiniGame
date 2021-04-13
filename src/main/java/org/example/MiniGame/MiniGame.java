@@ -28,7 +28,7 @@ public class MiniGame {
                 case 2:
                     MiniGame.cls();
                     System.out.println("2번 게임 선택");
-                    storyGame();
+
                     break;
                 case 0:
                     break;
@@ -47,7 +47,7 @@ public class MiniGame {
     public static void rspGame() {
         Random random = new Random();
         HashMap<Integer, String> map1;
-        map1 = new HashMap<Integer, String>();
+        map1 = new HashMap<>();
         map1.put(1, "가위");
         map1.put(2, "바위");
         map1.put(3, "보");
@@ -55,13 +55,13 @@ public class MiniGame {
         while (true) {
             System.out.println("1.가위 2.바위 3.보 4.게임끝내기");
             System.out.print(">입력 : ");
-            int you = MiniGame.nextInt();          //무엇을 낼지 결정
+            int you = MiniGame.nextInt();  //무엇을 낼지 결정
 
             switch (you) {
                 case 1:
                 case 2:
                 case 3:
-                case 4:                // java11에서는 향상된 switch 문 못씀
+                case 4:  // java11에서는 향상된 switch 문 못씀
                     break;
                 default:
                     System.out.println("선택 이탈! 다시 선택하세요");
@@ -71,7 +71,7 @@ public class MiniGame {
             if (you == 4)  // 프로그램 종료
                 break;
 
-            int com = random.nextInt(3) + 1; //1~3 까지 랜덤 생성.
+            int com = random.nextInt(3) + 1;  //1~3 까지 랜덤 생성.
 
             System.out.println("당신 : " + map1.get(you));
             System.out.println("컴퓨터 : " + map1.get(com));
@@ -88,7 +88,7 @@ public class MiniGame {
         System.out.println("--- 가위바위보 게임 종료 --- ");
     }
 
-    public static void storyGame() {
+    public static void mapleStory() {
 
     }
 
@@ -103,5 +103,33 @@ public class MiniGame {
     public static int nextInt() {
         Scanner scan = new Scanner(System.in);
         return scan.nextInt();
+    }
+
+    public static String nextLine() {
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
+}
+
+class MaplePlayer {
+    String playerName;
+    int playerNumber;
+    int job;
+    int[] ability = {0,0,0,0};
+    int hp;
+    int money;
+
+    public void getHurts(int a) {
+        this.hp -= a;
+    }
+}
+
+class MapleMonster {
+    String monsterName;
+    int hp;
+    int[] item;
+
+    public void getHurts(int a) {
+        this.hp -= a;
     }
 }
