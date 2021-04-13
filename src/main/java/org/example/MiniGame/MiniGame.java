@@ -8,36 +8,52 @@ import java.util.Scanner;
 public class MiniGame {
     public static void main(String[] args) {
 
-        int gameNum;
+        String gameNum;
         do {
             System.out.println("*************");
             System.out.println("* mini games List");
             System.out.println("* 1. 가위바위보");
-            System.out.println("* 2. ");
+            System.out.println("* 2. 메이플스토리");
             System.out.println("* 0. 종료");
             System.out.println("*************");
             System.out.print("* 게임을 선택하세요 : ");
-            gameNum = MiniGame.nextInt(); //숫자입력
+            gameNum = MiniGame.nextLine(); //문자 입력
 
             switch (gameNum) {
-                case 1:
+                case "1":
+                case "가위바위보":
                     MiniGame.cls(); //출력물 간격 띄우기
                     System.out.println("가위바위보 선택!");
                     rspGame(); //게임 메소드 실행
                     break;
-                case 2:
+                case "2":
+                case "메이플스토리":
                     MiniGame.cls();
                     System.out.println("2번 게임 선택");
 
                     break;
-                case 0:
+                case "0":
+                case "종료":
+                    System.out.println("종료 실행");
                     break;
                 default:
                     MiniGame.cls();
                     System.out.println("다시 입력해주세요");
                     break;
             }
-        } while (gameNum != 0);
+            System.out.println("gameNum 결과 확인: " + gameNum);
+            boolean a = gameNum.equals("1");
+            System.out.println("1을 입력했을때 true: " + a);
+            System.out.println("!a: " + !a);
+            boolean b = !gameNum.equals("1");
+            System.out.println("!gameNum.equals(\"1\"): " + b);
+            boolean c = gameNum.equals("0");
+            System.out.println("gameNum.equals(\"0\"): " + c);
+            boolean d = !gameNum.equals("0");
+            System.out.println("!gameNum.equals(\"0\"): " + d);
+
+        } while (!(gameNum.equals("0") || gameNum.equals("종료")));
+        // while (!gameNum.equals("0") || !gameNum.equals("종료")); <- 탈출불가.
 
         MiniGame.cls();
         System.out.println("프로그램 종료~ ㅂㅂ~ ");
@@ -113,11 +129,11 @@ public class MiniGame {
 
 class MaplePlayer {
     String playerName;
-    int playerNumber;
+
     int job;
     int[] ability = {0,0,0,0};
-    int hp;
-    int money;
+    int hp = 100;
+    int money = 1000;
 
     public void getHurts(int a) {
         this.hp -= a;
@@ -126,8 +142,8 @@ class MaplePlayer {
 
 class MapleMonster {
     String monsterName;
-    int hp;
-    int[] item;
+    int hp = 100;
+    int[] item = {};
 
     public void getHurts(int a) {
         this.hp -= a;
