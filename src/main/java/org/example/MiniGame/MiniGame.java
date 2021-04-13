@@ -9,8 +9,10 @@ public class MiniGame {
     public static void main(String[] args) {
 
         String gameNum;
+
         do {
-            System.out.println("*************");
+            MiniGame.cls();
+            System.out.println("******메인 메뉴*******");
             System.out.println("* mini games List");
             System.out.println("* 1. 가위바위보");
             System.out.println("* 2. 메이플스토리");
@@ -29,8 +31,7 @@ public class MiniGame {
                 case "2":
                 case "메이플스토리":
                     MiniGame.cls();
-                    System.out.println("2번 게임 선택");
-
+                    MiniGame.mapleStory();
                     break;
                 case "0":
                 case "종료":
@@ -41,19 +42,8 @@ public class MiniGame {
                     System.out.println("다시 입력해주세요");
                     break;
             }
-            System.out.println("gameNum 결과 확인: " + gameNum);
-            boolean a = gameNum.equals("1");
-            System.out.println("1을 입력했을때 true: " + a);
-            System.out.println("!a: " + !a);
-            boolean b = !gameNum.equals("1");
-            System.out.println("!gameNum.equals(\"1\"): " + b);
-            boolean c = gameNum.equals("0");
-            System.out.println("gameNum.equals(\"0\"): " + c);
-            boolean d = !gameNum.equals("0");
-            System.out.println("!gameNum.equals(\"0\"): " + d);
 
         } while (!(gameNum.equals("0") || gameNum.equals("종료")));
-        // while (!gameNum.equals("0") || !gameNum.equals("종료")); <- 탈출불가.
 
         MiniGame.cls();
         System.out.println("프로그램 종료~ ㅂㅂ~ ");
@@ -69,6 +59,7 @@ public class MiniGame {
         map1.put(3, "보");
 
         while (true) {
+            MiniGame.cls();
             System.out.println("1.가위 2.바위 3.보 4.게임끝내기");
             System.out.print(">입력 : ");
             int you = MiniGame.nextInt();  //무엇을 낼지 결정
@@ -102,10 +93,38 @@ public class MiniGame {
             }
         }
         System.out.println("--- 가위바위보 게임 종료 --- ");
+        MiniGame.cls();
     }
 
+    //메이플스토리
     public static void mapleStory() {
+        MaplePlayer p1 = new MaplePlayer();
+        Mushroom a = new Mushroom();
+        System.out.println(a.art);
 
+        while(true) {
+            System.out.println("> 모험을 떠나볼까요?");
+            System.out.println(">1.입장하기");
+            System.out.println(">2.나가기");
+            System.out.print("숫자입력: ");
+            int menu = MiniGame.nextInt();
+
+            if (menu == 1) {
+                MiniGame.cls();
+                System.out.println("플레이어 이름: ");
+                p1.playerName = MiniGame.nextLine();
+
+                System.out.println("게임 종료");
+
+            }
+            else if (menu == 2) {
+                System.out.println("***안녕히 가세요***");
+                break;
+            }
+            else {
+                System.out.println("다시 입력해주세요.");
+            }
+        }
     }
 
     // 콘솔 공백출력
@@ -121,6 +140,7 @@ public class MiniGame {
         return scan.nextInt();
     }
 
+    //콘솔 문자열 입력 메소드
     public static String nextLine() {
         Scanner scan = new Scanner(System.in);
         return scan.nextLine();
@@ -128,24 +148,30 @@ public class MiniGame {
 }
 
 class MaplePlayer {
-    String playerName;
-
-    int job;
-    int[] ability = {0,0,0,0};
+    String playerName = "";
     int hp = 100;
     int money = 1000;
 
     public void getHurts(int a) {
         this.hp -= a;
     }
+
 }
 
 class MapleMonster {
-    String monsterName;
+    String monsterName = "주황버섯";
     int hp = 100;
-    int[] item = {};
 
     public void getHurts(int a) {
         this.hp -= a;
     }
+}
+
+class Mushroom {
+    String art = "\n" +
+            "┏━┳━┓╋╋╋╋╋╋╋╋╋┏━━┳┓\n" +
+            "┃┃┃┃┣━┓┏━┳┓┏━┓┃━━┫┗┳━┳┳┳┳┓\n" +
+            "┃┃┃┃┃╋┗┫╋┃┗┫┻┫┣━━┃┏┫╋┃┏┫┃┃\n" +
+            "┗┻━┻┻━━┫┏┻━┻━┛┗━━┻━┻━┻┛┣┓┃\n" +
+            "╋╋╋╋╋╋╋┗┛╋╋╋╋╋╋╋╋╋╋╋╋╋╋┗━┛";
 }
